@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import styles from './Hero.module.css'
 
 const roles = [
@@ -10,6 +10,7 @@ const roles = [
 ]
 
 export default function Hero() {
+  const [photoMode, setPhotoMode] = useState('web3') // 'web3' | 'professional'
   const [roleIndex, setRoleIndex] = useState(0)
   const [displayed, setDisplayed] = useState('')
   const [deleting, setDeleting] = useState(false)
@@ -100,19 +101,69 @@ export default function Hero() {
         </div>
 
         <div className={styles.right}>
+          {/* Toggle buttons */}
+          <div className={styles.photoToggle}>
+            <button
+              className={`${styles.toggleBtn} ${photoMode === 'web3' ? styles.toggleActive : ''}`}
+              onClick={() => setPhotoMode('web3')}
+            >
+              <span className={styles.toggleIcon}>⬡</span>
+              WEB3
+            </button>
+            <button
+              className={`${styles.toggleBtn} ${photoMode === 'professional' ? styles.toggleActivePro : ''}`}
+              onClick={() => setPhotoMode('professional')}
+            >
+              <span className={styles.toggleIcon}>◈</span>
+              PRO
+            </button>
+          </div>
+
           <div className={styles.photoWrap}>
             <div className={styles.hexRing1} />
             <div className={styles.hexRing2} />
-            <div className={styles.photoHex}>
-              <img src="./arief.jpg" alt="Arief Rahmadi" className={styles.photo} />
+
+            {/* WEB3 MODE: hex clip + glitch + neon nodes */}
+            <div className={`${styles.photoHex} ${photoMode === 'web3' ? styles.photoVisible : styles.photoHidden}`}>
+              <img src="./arief.jpg" alt="Arief Rahmadi" className={`${styles.photo} ${styles.photoWeb3}`} />
+              <div className={styles.glitchLayer} aria-hidden />
+              <div className={styles.scanOverlay} aria-hidden />
             </div>
-            <div className={styles.dataNodes}>
-              {['GIS', 'Web3', 'AI', 'UX', 'Cloud'].map((tag, i) => (
-                <div key={tag} className={styles.node} style={{ '--i': i }}>
-                  {tag}
-                </div>
-              ))}
+
+            {/* PROFESSIONAL MODE: clean circle + color photo */}
+            <div className={`${styles.photoCircle} ${photoMode === 'professional' ? styles.photoVisible : styles.photoHidden}`}>
+              <img src="./arief.jpg" alt="Arief Rahmadi" className={`${styles.photo} ${styles.photoPro}`} />
+              <div className={styles.proRing} />
             </div>
+
+            {/* Data nodes — only in web3 mode */}
+            {photoMode === 'web3' && (
+              <div className={styles.dataNodes}>
+                {['GIS', 'Web3', 'AI', 'UX', 'Cloud'].map((tag, i) => (
+                  <div key={tag} className={styles.node} style={{ '--i': i }}>
+                    {tag}
+                  </div>
+                ))}
+              </div>
+            )}
+
+            {/* Pro badges — only in pro mode */}
+            {photoMode === 'professional' && (
+              <div className={styles.dataNodes}>
+                {['MSc', 'GIS', 'CEO', 'PWK', 'ITE'].map((tag, i) => (
+                  <div key={tag} className={styles.nodePro} style={{ '--i': i }}>
+                    {tag}
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+
+          {/* Mode label */}
+          <div className={styles.modeLabel}>
+            {photoMode === 'web3'
+              ? '// CYBERPUNK MODE ACTIVE'
+              : '// PROFESSIONAL MODE ACTIVE'}
           </div>
         </div>
       </div>

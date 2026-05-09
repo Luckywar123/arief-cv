@@ -1,0 +1,312 @@
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 120px 60px 80px;
+  overflow: hidden;
+}
+
+.scanline {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, var(--accent-neon), transparent);
+  animation: scanline 5s linear infinite;
+  opacity: 0.4;
+  z-index: 1;
+}
+
+.content {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: 1fr 420px;
+  gap: 80px;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 2px;
+  color: var(--accent-neon);
+  border: 1px solid rgba(0, 255, 136, 0.3);
+  padding: 6px 16px;
+  margin-bottom: 24px;
+  clip-path: polygon(6px 0%, 100% 0%, calc(100% - 6px) 100%, 0% 100%);
+  background: rgba(0, 255, 136, 0.05);
+}
+
+.dot {
+  width: 6px;
+  height: 6px;
+  background: var(--accent-neon);
+  border-radius: 50%;
+  animation: blink 1.5s ease infinite;
+}
+
+.greeting {
+  margin-bottom: 12px;
+}
+
+.greetMono {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--accent-cyan);
+  letter-spacing: 1px;
+}
+
+.name {
+  font-size: clamp(56px, 7vw, 96px);
+  font-weight: 800;
+  line-height: 0.9;
+  letter-spacing: -2px;
+  margin-bottom: 20px;
+  position: relative;
+}
+
+.nameFirst {
+  color: var(--text-primary);
+}
+
+.nameLast {
+  color: var(--accent-neon);
+  position: relative;
+  text-shadow: 0 0 30px rgba(0, 255, 136, 0.4);
+  animation: neon-flicker 6s ease infinite;
+}
+
+.nameGlitch {
+  position: absolute;
+  top: 50%; left: 0;
+  color: var(--accent-cyan);
+  opacity: 0;
+  animation: glitch 4s ease infinite 2s;
+  pointer-events: none;
+}
+
+.roleWrap {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 28px;
+  font-family: var(--font-mono);
+  font-size: 18px;
+}
+
+.roleLabel {
+  color: var(--accent-cyan);
+}
+
+.role {
+  color: var(--text-primary);
+  min-width: 220px;
+}
+
+.cursor {
+  color: var(--accent-neon);
+  animation: blink 1s step-end infinite;
+}
+
+.bio {
+  font-size: 16px;
+  line-height: 1.7;
+  color: var(--text-secondary);
+  max-width: 520px;
+  margin-bottom: 36px;
+}
+
+.hl {
+  color: var(--accent-cyan);
+}
+
+.stats {
+  display: flex;
+  gap: 40px;
+  margin-bottom: 44px;
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.statVal {
+  font-size: 32px;
+  font-weight: 800;
+  color: var(--accent-neon);
+  line-height: 1;
+}
+
+.statLabel {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--text-secondary);
+  letter-spacing: 1px;
+}
+
+.actions {
+  display: flex;
+  gap: 16px;
+}
+
+.btnPrimary {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 2px;
+  color: var(--bg-void);
+  background: var(--accent-neon);
+  padding: 14px 32px;
+  text-decoration: none;
+  clip-path: polygon(10px 0%, 100% 0%, calc(100% - 10px) 100%, 0% 100%);
+  font-weight: 700;
+  transition: all 0.3s ease;
+}
+
+.btnPrimary:hover {
+  background: #00ffaa;
+  box-shadow: 0 0 30px rgba(0, 255, 136, 0.5);
+  transform: translateY(-3px);
+}
+
+.btnSecondary {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 2px;
+  color: var(--accent-cyan);
+  background: transparent;
+  border: 1px solid var(--accent-cyan);
+  padding: 14px 32px;
+  text-decoration: none;
+  clip-path: polygon(10px 0%, 100% 0%, calc(100% - 10px) 100%, 0% 100%);
+  transition: all 0.3s ease;
+}
+
+.btnSecondary:hover {
+  background: rgba(0, 212, 255, 0.1);
+  box-shadow: 0 0 20px rgba(0, 212, 255, 0.3);
+  transform: translateY(-3px);
+}
+
+/* Right: Photo */
+.photoWrap {
+  position: relative;
+  width: 360px;
+  height: 420px;
+  margin: 0 auto;
+}
+
+.hexRing1 {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 380px;
+  height: 380px;
+  border: 1px solid rgba(0, 255, 136, 0.15);
+  border-radius: 50%;
+  animation: float 6s ease-in-out infinite;
+}
+
+.hexRing2 {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%) rotate(30deg);
+  width: 330px;
+  height: 330px;
+  border: 1px dashed rgba(0, 212, 255, 0.2);
+  border-radius: 50%;
+  animation: float 8s ease-in-out infinite reverse;
+}
+
+.photoHex {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 280px;
+  height: 280px;
+  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+  background: var(--bg-card);
+  animation: float 5s ease-in-out infinite;
+  border: 2px solid rgba(0, 255, 136, 0.2);
+  overflow: hidden;
+}
+
+.photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  filter: saturate(0.8) contrast(1.05);
+  mix-blend-mode: luminosity;
+}
+
+.photoHex::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(0, 255, 136, 0.1) 0%, transparent 50%, rgba(0, 212, 255, 0.1) 100%);
+  mix-blend-mode: screen;
+}
+
+.dataNodes {
+  position: absolute;
+  inset: 0;
+}
+
+.node {
+  position: absolute;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 1px;
+  color: var(--accent-neon);
+  background: rgba(0, 255, 136, 0.08);
+  border: 1px solid rgba(0, 255, 136, 0.3);
+  padding: 4px 10px;
+  clip-path: polygon(4px 0%, 100% 0%, calc(100% - 4px) 100%, 0% 100%);
+  top: calc(var(--i) * 18% + 5%);
+  right: calc(-1 * (var(--i) % 2) * 10px - 10px);
+  animation: float calc(4s + var(--i) * 0.8s) ease-in-out infinite;
+  animation-delay: calc(var(--i) * 0.5s);
+}
+
+/* Scroll indicator */
+.scroll {
+  position: absolute;
+  bottom: 40px;
+  left: 60px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  z-index: 2;
+}
+
+.scrollLine {
+  width: 40px;
+  height: 1px;
+  background: var(--accent-neon);
+  display: block;
+}
+
+.scrollText {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 3px;
+  color: var(--text-dim);
+  animation: blink 2s ease infinite;
+}
+
+@media (max-width: 960px) {
+  .hero { padding: 100px 24px 60px; }
+  .content { grid-template-columns: 1fr; gap: 40px; }
+  .right { display: none; }
+  .name { font-size: 56px; }
+}
